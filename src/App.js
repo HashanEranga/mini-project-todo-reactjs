@@ -1,10 +1,11 @@
 import './App.css';
+import Layout from '../src/Layout/Layout';
 
 function App() {
   return (
-    <div>
-      
-    </div>
+    <Layout>
+      <div>Main section goes here</div>
+    </Layout>
   );
 }
 
