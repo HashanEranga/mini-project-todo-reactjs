@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {Container, Form, Button, ListGroup} from "react-bootstrap"
+import TodoItem from "../TodoItem/TodoItem";
 
 const TodoForm = () => {
     const [task, setTask] = useState('');
@@ -15,6 +16,13 @@ const TodoForm = () => {
             setTasks([...tasks, task])
             setTask('')
         }
+    }
+
+    const handleDelete = (id) => {
+        console.log("removed id "+id)
+        let removeTask = tasks[id]
+        console.log("removing item " + removeTask)
+        setTasks(tasks.filter((task, index)  => index != id))
     }
 
     return (
@@ -37,7 +45,7 @@ const TodoForm = () => {
             <h1>Todo List</h1>
             <ListGroup className="mb-5">
                 {tasks.map((task, index) => (
-                    <ListGroup.Item key={index}>{task}</ListGroup.Item>
+                    <ListGroup.Item key={index}><TodoItem item={task} index={index} onDelete={handleDelete}/></ListGroup.Item>
                 ))}
             </ListGroup>
 
