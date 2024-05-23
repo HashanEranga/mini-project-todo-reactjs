@@ -1,11 +1,11 @@
 import './App.css';
 import Layout from '../src/Layout/Layout';
-import TodoForm from './Components/TodoForm/TodoForm';
+import TodoApp from './Pages/TodoApp';
 
 function App() {
   return (
     <Layout>
-      <TodoForm/>
+      <TodoApp/>
     </Layout>
   );
 }

@@ -1,10 +1,8 @@
 import React, {useState} from "react";
-import {Container, Form, Button, ListGroup} from "react-bootstrap"
-import TodoItem from "../TodoItem/TodoItem";
+import {Container, Form, Button} from "react-bootstrap"
 
-const TodoForm = () => {
+const TodoForm = ({addTodo}) => {
     const [task, setTask] = useState('');
-    const [tasks, setTasks] = useState([]);
 
     const handleTodoChange = (event) => {
         setTask(event.target.value)
@@ -13,25 +11,16 @@ const TodoForm = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         if (task.trim()){
-            setTasks([...tasks, task])
+            addTodo(task)
             setTask('')
         }
     }
 
-    const handleDelete = (id) => {
-        console.log("removed id "+id)
-        let removeTask = tasks[id]
-        console.log("removing item " + removeTask)
-        setTasks(tasks.filter((task, index)  => index != id))
-    }
-
     return (
         <Container>
-            <h1 className="mt-5">Todo List Form</h1>
-
-            <Form onSubmit={handleSubmit} className="mb-3">
+            <Form onSubmit={handleSubmit} className="mb-3 mt-5">
                 <Form.Group controlId="todoFormTask">
-                    <Form.Label>Task</Form.Label>
+                    <Form.Label><h2>Add Task</h2></Form.Label>
                     <Form.Control
                         type="text"
                         placeholder="Enter task"
@@ -41,14 +30,6 @@ const TodoForm = () => {
                 </Form.Group>
                 <Button variant="primary" className="mt-2" type="submit">Add Task</Button>
             </Form>
-
-            <h1>Todo List</h1>
-            <ListGroup className="mb-5">
-                {tasks.map((task, index) => (
-                    <ListGroup.Item key={index}><TodoItem item={task} index={index} onDelete={handleDelete}/></ListGroup.Item>
-                ))}
-            </ListGroup>
-
         </Container>
     )
 }
