@@ -16,7 +16,7 @@ const TodoItem = ({item, index, onDelete}) => {
     }
 
     return (
-        <Container className="">
+        <Container>
             <Row>
                 <Col className={`${isDone ? styles.done : ''} mt-2`}>{item}</Col>
                 <Col className="d-flex justify-content-end"> 
