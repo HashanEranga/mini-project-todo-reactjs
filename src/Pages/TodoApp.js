@@ -6,6 +6,8 @@ import TodoModel from '../models/TodoModel'
 const TodoApp = () => {
     const [todos, setTodo] = useState([])
     const [nextId, setNextId] = useState(0)
+    const [order, setOrder] = useState(false)
+
     const handleAddTodo = (newTodo) => {
         const newTodoItem = new TodoModel(nextId, newTodo)
         setTodo([...todos, newTodoItem])
@@ -22,10 +24,25 @@ const TodoApp = () => {
         ))
     }
 
+    const handleOrderChange = () => {
+        if(order) setTodo(todos.slice().sort((a, b) => a.id - b.id))
+        else setTodo(todos.slice().sort((a, b) => b.id - a.id))
+        setOrder(!order)
+    }
+
     return (
         <>
-            <TodoForm addTodo = {handleAddTodo}/>
-            <TodoItemList tasks={todos} onDelete = {handleDelete} onComplete={handleComplete}/>
+            <TodoForm 
+                addTodo = {handleAddTodo}
+            />
+
+            <TodoItemList 
+                tasks={todos} 
+                onDelete = {handleDelete} 
+                onComplete={handleComplete} 
+                toggleOrderChange={handleOrderChange} 
+                currentOrder={order}
+            />
         </>
     )
 }
