@@ -5,7 +5,7 @@ import TodoItem from '../TodoItem/TodoItem'
 import Row from 'react-bootstrap/Row'
 
 
-const TodoItemList = ({tasks, onDelete}) => {
+const TodoItemList = ({tasks, onDelete, onComplete}) => {
     return (
         <Container>
             <Row><h2>Todo List</h2></Row>
@@ -14,7 +14,7 @@ const TodoItemList = ({tasks, onDelete}) => {
                 <Row>
                     <ListGroup className="mb-2">
                         {tasks.map((task, index) => (
-                            <ListGroup.Item key={index}><TodoItem item={task} index={index} onDelete={onDelete}/></ListGroup.Item>
+                            <ListGroup.Item key={index}><TodoItem item={task} index={index} onDelete={onDelete} onComplete={onComplete}/></ListGroup.Item>
                         ))}
                     </ListGroup>
                 </Row>
